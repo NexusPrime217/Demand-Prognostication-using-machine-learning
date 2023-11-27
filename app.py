@@ -34,7 +34,7 @@ def result():
 
     model_path=r'D:\BigMart-Sales-Prediction-using-Machine-Learning-main (1)\BigMart-Sales-Prediction-using-Machine-Learning-main\models\lr.sav'
 
-    model= joblib.load(model_path)
+    model= joblib.load("F:\Final _year\Model\XGBoost.sav")
 
     Y_pred=model.predict(X_std)
 
