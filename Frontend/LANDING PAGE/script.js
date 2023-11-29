@@ -168,3 +168,7 @@ Mem.forEach(function(elem){
     Salmon.style.opacity="0"
   })
 })
+
+function redirectToLocalhost() {
+  window.location.href = 'http://127.0.0.1:5000/';
+}
