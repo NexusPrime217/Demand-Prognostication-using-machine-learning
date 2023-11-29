@@ -26,7 +26,8 @@ def result():
     X= np.array([[ item_weight,item_fat_content,item_visibility,item_type,item_mrp,
                   outlet_establishment_year,outlet_size,outlet_location_type,outlet_type ]])
 
-    scaler_path= r'F:\Final _year\Backend\models\sc.sav'
+    #scaler_path= r'F:\Final _year\Backend\models\sc.sav'
+    scaler_path= r'Backend/models/sc.sav'
 
 
     sc=joblib.load(scaler_path)
@@ -34,6 +35,7 @@ def result():
     X_std= sc.transform(X)
 
     model_path=r'F:\Final _year\Backend\models\XGBoost.sav'
+    model_path=r'Backend/models/XGBoost.sav'
 
 
     model= joblib.load(model_path)
