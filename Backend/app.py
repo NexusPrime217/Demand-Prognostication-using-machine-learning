@@ -2,6 +2,7 @@ from flask import Flask, jsonify, render_template, request
 import joblib
 import os
 import numpy as np
+import requests
 
 app = Flask(__name__)
 
@@ -11,6 +12,8 @@ def index():
     return render_template("home.html")
 
 @app.route('/predict',methods=['POST','GET'])
+
+#
 def result():
 
     item_weight= float(request.form['item_weight'])
@@ -26,23 +29,23 @@ def result():
     X= np.array([[ item_weight,item_fat_content,item_visibility,item_type,item_mrp,
                   outlet_establishment_year,outlet_size,outlet_location_type,outlet_type ]])
 
-    #scaler_path= r'F:\Final _year\Backend\models\sc.sav'
     scaler_path= r'Backend/models/sc.sav'
+    #scaler_path= r'Backend/models/XGBoost.sav'
 
 
     sc=joblib.load(scaler_path)
+    #sc=load_model_from_github(scaler_path)
 
     X_std= sc.transform(X)
 
-    model_path=r'F:\Final _year\Backend\models\XGBoost.sav'
+    #model_path=r'F:\Final _year\Backend\models\XGBoost.sav'
     model_path=r'Backend/models/XGBoost.sav'
 
 
     model= joblib.load(model_path)
+    # model= load_model_from_github(model_path)
 
     Y_pred=model.predict(X_std)
 
     return render_template("results.html", prediction = Y_pred)
 
-# if __name__ == "__main__":
-#     app.run(host="0.0.0.0",port=5000)
